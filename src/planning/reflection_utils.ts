@@ -82,17 +82,6 @@ function getConstructorArgsAsTarget(
     // Types Object and Function are too ambiguous to be resolved
     // user needs to generate metadata manually for those
     if (isManaged) {
-
-        const isObject = serviceIdentifier === Object;
-        const isFunction = serviceIdentifier === Function;
-        const isUndefined = serviceIdentifier === undefined;
-        const isUnknownType = (isObject || isFunction || isUndefined);
-
-        if (!isBaseClass && isUnknownType) {
-            const msg = `${ERROR_MSGS.MISSING_INJECT_ANNOTATION} argument ${index} in class ${constructorName}.`;
-            throw new Error(msg);
-        }
-
         const target = new Target(TargetTypeEnum.ConstructorArgument, metadata.targetName, serviceIdentifier);
         target.metadata = targetMetadata;
         return target;
